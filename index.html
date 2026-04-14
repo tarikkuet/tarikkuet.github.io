@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarik Islam — Data Engineering Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f7f6f2;
+    --light: #eeede8;
+    --mid: #c8c6be;
+    --text-muted: #888882;
+    --text: #2a2a28;
+    --accent: #1a6b4a;
+    --accent-light: #e2f0ea;
+    --accent2: #c8541a;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--light);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 2rem 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, var(--accent-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 720px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #b4d9c8;
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: #155a3d; transform: translateY(-1px); }
+  .hero-cta-sec {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid var(--mid);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-left: 1rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hero-cta-sec:hover { border-color: var(--text-muted); background: var(--off-white); }
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--light);
+  }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--text);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 90px 2rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  #about { background: var(--off-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--text-muted); line-height: 1.85; margin-bottom: 1.2rem; font-size: 1.02rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-highlight { color: var(--text) !important; font-weight: 500; }
+  .about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
+  .fact-card {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    border-left: 3px solid var(--accent);
+  }
+  .fact-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .fact-value { font-weight: 500; font-size: 0.95rem; }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+  .skill-category {
+    background: var(--off-white);
+    border-radius: 10px;
+    padding: 1.4rem;
+    border: 1px solid var(--light);
+  }
+  .skill-cat-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 0.82rem;
+    font-weight: 500;
+    background: var(--white);
+    border: 1px solid var(--mid);
+    color: var(--text);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--off-white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+  .project-icon {
+    width: 42px; height: 42px;
+    background: var(--accent-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+    font-size: 1.1rem;
+  }
+  .project-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
+  .project-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--text); }
+  #contact .section-eyebrow { color: #6bcfa0; }
+  #contact .section-title { color: var(--white); }
+  #contact .section-lead { color: #aaa; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1.4rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #777; margin-bottom: 3px; }
+  .contact-value { font-size: 0.95rem; color: var(--white); font-weight: 500; }
+  .contact-value a { color: #6bcfa0; text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #555;
+  }
+
+  @media (max-width: 700px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Tarik Islam</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Open to Remote Opportunities</span>
+    <h1 class="hero-name">Tarik Islam</h1>
+    <p class="hero-title">Data Engineering Leader &amp; AI Enthusiast</p>
+    <p class="hero-desc">
+      15+ years building data infrastructure for telecom at scale — ETL pipelines, data marts, AI-powered campaign platforms, and real-time analytics. Based in Dhaka, Bangladesh.
+    </p>
+    <a href="#projects" class="hero-cta">View My Work</a>
+    <a href="#contact" class="hero-cta-sec">Get in Touch</a>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">15+</span>
+        <span class="hero-stat-label">Years Experience</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">2K+</span>
+        <span class="hero-stat-label">Active Campaigns</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">4</span>
+        <span class="hero-stat-label">Platform Stack</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">About Me</p>
+        <h2 class="section-title">Data leader.<br>AI practitioner.</h2>
+        <p>
+          I lead a <span class="about-highlight">data engineering team</span> managing ETL pipelines, Oracle Exadata data marts, and Hadoop-based big data infrastructure at a major telecom in Bangladesh.
+        </p>
+        <p>
+          Alongside engineering, I manage a <span class="about-highlight">CVM operations team</span> running 2,000+ active AI-generated marketing campaigns with near-zero error rates — bridging the gap between data infrastructure and business outcomes.
+        </p>
+        <p>
+          Currently investing in <span class="about-highlight">Python, AI/ML, and cloud skills</span> to transition into international data & AI engineering roles.
+        </p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card">
+          <div class="fact-label">Current Role</div>
+          <div class="fact-value">Data Engineering Leader, Telecom</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Location</div>
+          <div class="fact-value">Dhaka, Bangladesh · Remote-Ready</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Core Expertise</div>
+          <div class="fact-value">ETL · Data Marts · CVM · AI Campaigns</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Currently Learning</div>
+          <div class="fact-value">Python · Pandas · ML · Cloud (AWS/GCP)</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Availability</div>
+          <div class="fact-value">Open to Remote Full-time / Contract</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-eyebrow">Technical Skills</p>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-lead">A production-proven stack across data engineering, analytics, and AI platforms.</p>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-cat-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Oracle Exadata</span>
+          <span class="skill-tag">Cloudera Hadoop</span>
+          <span class="skill-tag">ETL Pipelines</span>
+          <span class="skill-tag">Data Marts</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">PL/SQL</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Orchestration</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Apache Airflow</span>
+          <span class="skill-tag">Oracle Chain</span>
+          <span class="skill-tag">Cron</span>
+          <span class="skill-tag">Pipeline Automation</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Analytics & BI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">SAP BusinessObjects</span>
+          <span class="skill-tag">Dashboard Design</span>
+          <span class="skill-tag">Reporting</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CVM / Campaign AI</span>
+          <span class="skill-tag">Churn Prediction</span>
+          <span class="skill-tag">CDR Analytics</span>
+          <span class="skill-tag">Python (Learning)</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CDP Platform</span>
+          <span class="skill-tag">Linux / Unix</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Notion</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Management</span>
+          <span class="skill-tag">L1/L2 Support Ops</span>
+          <span class="skill-tag">Incident Management</span>
+          <span class="skill-tag">Data Quality</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-eyebrow">Projects</p>
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-lead">Real-world data and AI projects from telecom production environments.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon">⚙</div>
+        <div class="project-title">Airflow Migration — ETL Orchestration</div>
+        <div class="project-desc">Migrating legacy Cron and Oracle Chain-based ETL workflows to Apache Airflow for improved observability, dependency management, and scheduling reliability across 100+ pipelines.</div>
+        <div class="project-tags">
+          <span class="project-tag">Airflow</span>
+          <span class="project-tag">Oracle</span>
+          <span class="project-tag">ETL</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-title">AI-Powered CVM Campaign Platform</div>
+        <div class="project-desc">Operating a Customer Value Management platform that auto-generates 600–700 campaigns daily using AI, sustaining 2,000+ active campaigns with near-zero error rates for a major telecom.</div>
+        <div class="project-tags">
+          <span class="project-tag">CVM</span>
+          <span class="project-tag">AI Campaigns</span>
+          <span class="project-tag">CDP</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📬</div>
+        <div class="project-title">Tableau Report Scheduler (Python)</div>
+        <div class="project-desc">Designing a Python/Airflow-based solution to replace SAP BO's email scheduling feature — enabling automated Oracle-sourced Tableau report delivery without SAP dependency.</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Tableau</span>
+          <span class="project-tag">Airflow</span>
+          <span class="project-tag">Oracle</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🔍</div>
+        <div class="project-title">SAP BO Audit & Schedule Monitor</div>
+        <div class="project-desc">Built a query layer over SAP BO audit and CMS databases to track report schedule execution status, enabling proactive monitoring and faster incident resolution for business-critical reports.</div>
+        <div class="project-tags">
+          <span class="project-tag">SAP BO</span>
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">Monitoring</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🏗</div>
+        <div class="project-title">SAP BO High Availability Cluster</div>
+        <div class="project-desc">Planning and implementing a SAP BusinessObjects clustered environment to replace a standalone server setup — improving resilience, scaling capacity for growing report demand.</div>
+        <div class="project-tags">
+          <span class="project-tag">SAP BO</span>
+          <span class="project-tag">Clustering</span>
+          <span class="project-tag">Infrastructure</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <div class="project-title">Telecom AI Use Cases — Self Study</div>
+        <div class="project-desc">Applied learning project covering churn prediction, CDR anomaly detection, and AI-generated campaign logic — building hands-on Python and ML skills scoped to telecom data environments.</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">ML</span>
+          <span class="project-tag">Telecom AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-eyebrow">Contact</p>
+    <h2 class="section-title">Let's connect</h2>
+    <p class="section-lead">Open to remote data engineering and AI roles. Feel free to reach out.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:your@email.com">your@email.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value"><a href="#">linkedin.com/in/yourprofile</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🐙</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value"><a href="#">github.com/yourusername</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Dhaka, Bangladesh · Remote-Ready</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Tarik Islam · Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
